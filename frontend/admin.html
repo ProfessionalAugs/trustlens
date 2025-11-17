@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustLens - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <h1 class="logo-text">TrustLens Admin</h1>
+            <div class="nav-right">
+                <a href="dashboard.html" class="btn-secondary">Back to Dashboard</a>
+                <button class="btn-secondary" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h2>Low Confidence Predictions</h2>
+            <p class="subtitle">Review all predictions with confidence below 50%</p>
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalCount">0</span>
+                    <span class="stat-label">Total Flagged</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="avgConfidence">0%</span>
+                    <span class="stat-label">Avg Confidence</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-filters">
+            <button class="filter-btn active" id="filterAll">All</button>
+            <button class="filter-btn" id="filterFake">Fake</button>
+            <button class="filter-btn" id="filterReal">Real</button>
+        </div>
+
+        <div class="admin-table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>User ID</th>
+                        <th>File Name</th>
+                        <th>Label</th>
+                        <th>Confidence</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="predictionsTable">
+                    <tr>
+                        <td colspan="6" class="no-data">Loading predictions...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="no-results hidden" id="noResults">
+            <p>No low confidence predictions found</p>
+        </div>
+    </div>
+
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Loading data...</p>
+    </div>
+
+    <script type="module" src="../firebase/firebaseConfig.js"></script>
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

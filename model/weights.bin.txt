@@ -1,0 +1,32 @@
+WEIGHTS.BIN PLACEHOLDER
+
+This file represents the model weights for the TensorFlow deepfake detection model.
+
+In a production environment, this would be a binary file containing:
+- Trained neural network weights
+- Model parameters
+- Biases for each layer
+
+FILE SPECIFICATIONS:
+- Format: Binary
+- Size: Approximately 19.3 MB
+- Contains weights for:
+  - Dense layer 1: 150528 x 128 parameters
+  - Dense layer 1 bias: 128 parameters
+  - Dense layer 2: 128 x 64 parameters
+  - Dense layer 2 bias: 64 parameters
+  - Output layer: 64 x 1 parameters
+  - Output bias: 1 parameter
+
+CURRENT STATUS:
+This is a placeholder file. The actual backend server will create a runtime model when weights.bin is not found.
+
+TO USE A REAL MODEL:
+1. Train a deepfake detection model using TensorFlow or PyTorch
+2. Convert the model to TensorFlow.js format
+3. Replace this file with the actual weights.bin
+4. Ensure model.json references match the architecture
+
+NOTE:
+The placeholder model in server.js will generate random predictions for demonstration purposes.
+For production use, train and deploy a real deepfake detection model.

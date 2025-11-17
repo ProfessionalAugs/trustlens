@@ -1,0 +1,242 @@
+TRUSTLENS INSTALLATION VERIFICATION CHECKLIST
+
+Use this checklist to ensure everything is set up correctly.
+
+========================================
+PRE-INSTALLATION CHECKS
+========================================
+
+□ Node.js installed (version 14 or higher)
+  Check: Open terminal and run: node --version
+
+□ npm installed (comes with Node.js)
+  Check: Open terminal and run: npm --version
+
+□ Chrome browser installed
+  Check: For extension testing
+
+□ Firebase account created
+  Check: Visit https://console.firebase.google.com
+
+========================================
+FIREBASE SETUP VERIFICATION
+========================================
+
+□ Firebase project created
+  Location: Firebase Console
+
+□ Email/Password authentication enabled
+  Location: Authentication > Sign-in method
+
+□ Firestore database created
+  Location: Firestore Database
+
+□ Firebase config copied to firebaseConfig.js
+  File: firebase/firebaseConfig.js
+  Check: No "YOUR_" placeholders remain
+
+□ Firestore rules published
+  Location: Firestore Database > Rules
+  Content: From firebase/firestoreRules.txt
+
+□ Admin user created (optional)
+  Email: admin@example.com
+  Check: Can access admin dashboard
+
+========================================
+BACKEND SETUP VERIFICATION
+========================================
+
+□ Backend dependencies installed
+  Command: cd backend && npm install
+  Check: node_modules folder exists
+
+□ Backend server starts successfully
+  Command: node server.js
+  Expected: "TrustLens backend server running on http://localhost:3000"
+
+□ Health endpoint working
+  URL: http://localhost:3000/health
+  Expected: {"status":"ok","modelLoaded":true}
+
+□ Model loaded or placeholder created
+  Check: Console shows "Model loaded" or "Placeholder model created"
+
+□ Uploads folder created
+  Location: backend/uploads/
+  Check: Folder exists (created automatically)
+
+========================================
+FRONTEND VERIFICATION
+========================================
+
+□ Login page loads
+  File: frontend/index.html
+  Check: Opens in browser without errors
+
+□ Firebase connection working
+  Check: Browser console shows "Firebase initialized successfully"
+
+□ Can create new account
+  Test: Sign up with test email and password
+
+□ Can login with account
+  Test: Login with created account
+
+□ Dashboard loads after login
+  Check: Redirected to dashboard.html
+
+□ Can upload image file
+  Test: Select or drag-drop an image
+
+□ Can upload video file
+  Test: Select or drag-drop a video
+
+□ Analysis completes successfully
+  Test: Click Analyze button
+  Expected: Result displayed with confidence score
+
+□ Results show heatmap (for images)
+  Check: Colored overlay appears on analyzed image
+
+□ Results saved to Firestore
+  Check: Firebase Console > Firestore > predictions collection
+
+□ Can logout
+  Test: Click logout button
+  Expected: Redirected to login page
+
+□ Admin dashboard accessible (if admin user)
+  URL: frontend/admin.html
+  Check: Shows low confidence predictions table
+
+========================================
+CHROME EXTENSION VERIFICATION
+========================================
+
+□ Extension loaded in Chrome
+  Location: chrome://extensions/
+  Check: TrustLens appears in list
+
+□ Extension icon visible in toolbar
+  Check: Purple icon with "TL" appears
+
+□ Can open extension popup
+  Test: Click extension icon
+  Expected: Popup opens
+
+□ Backend connection working
+  Test: Extension can reach http://localhost:3000
+
+□ Can scan video on webpage
+  Test: Go to YouTube or any video site
+  Expected: Extension detects video
+
+□ Frame capture working
+  Test: Click "Scan Video" button
+  Expected: Loading state appears
+
+□ Results display in extension
+  Test: After scanning
+  Expected: Label and confidence shown
+
+========================================
+FUNCTIONALITY TESTS
+========================================
+
+□ Image upload and detection works
+  Test: Upload JPG, PNG images
+  Expected: Prediction returned within 5 seconds
+
+□ Video upload and detection works
+  Test: Upload MP4 video
+  Expected: First frame analyzed
+
+□ Confidence scores are realistic
+  Check: Between 0.0 and 1.0
+  Check: Label matches score (>0.5 = Fake, ≤0.5 = Real)
+
+□ Heatmap displays for images
+  Check: Grid-based colored overlay
+
+□ Results persist in Firestore
+  Check: Firebase Console shows all predictions
+
+□ Admin filter buttons work
+  Test: Click All, Fake, Real filters
+  Expected: Table updates accordingly
+
+□ Admin statistics update
+  Check: Total count and average confidence correct
+
+□ Error handling works
+  Test: Upload invalid file type
+  Expected: Error message shown
+
+□ File size limits enforced
+  Test: Upload >50MB file
+  Expected: Error message shown
+
+========================================
+SECURITY VERIFICATION
+========================================
+
+□ Firestore rules prevent unauthorized access
+  Test: Logout and try to access Firestore
+  Expected: Permission denied
+
+□ Users can only see their own predictions
+  Test: Login with different accounts
+  Expected: Each sees only their data
+
+□ Admin can see all predictions
+  Test: Login as admin@example.com
+  Expected: All predictions visible
+
+□ API requires valid file uploads
+  Test: POST to /predict without file
+  Expected: 400 error
+
+□ CORS enabled for frontend access
+  Check: No CORS errors in browser console
+
+========================================
+TROUBLESHOOTING COMPLETED
+========================================
+
+If any checkbox is unchecked, refer to:
+- README.md for detailed instructions
+- QUICKSTART.md for simple setup steps
+- Browser console for JavaScript errors
+- Backend terminal for server errors
+- Firebase Console for auth/database issues
+
+Common fixes:
+- Restart backend server
+- Clear browser cache
+- Check Firebase credentials
+- Reinstall node_modules
+- Reload Chrome extension
+
+========================================
+FINAL CONFIRMATION
+========================================
+
+□ All frontend features working
+□ All backend endpoints working
+□ All extension features working
+□ All Firebase connections working
+□ All security rules enforced
+□ All error handling tested
+
+If all boxes are checked: INSTALLATION SUCCESSFUL ✓
+
+Your TrustLens system is fully operational and ready for use!
+
+For production deployment, remember to:
+- Use environment variables for Firebase config
+- Enable HTTPS for backend API
+- Update Firestore rules for production
+- Implement rate limiting
+- Add input validation
+- Set up monitoring and logging

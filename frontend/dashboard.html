@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustLens - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <h1 class="logo-text">TrustLens</h1>
+            <div class="nav-right">
+                <span class="user-email" id="userEmail"></span>
+                <button class="btn-secondary" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="upload-section">
+            <h2>Upload Media for Analysis</h2>
+            <p class="subtitle">Detect deepfakes in images and videos using AI</p>
+
+            <div class="upload-box" id="uploadBox">
+                <input type="file" id="fileInput" accept="image/*,video/*" hidden>
+                <div class="upload-icon">📁</div>
+                <p class="upload-text">Click or drag and drop to upload</p>
+                <p class="upload-hint">Supports: JPG, PNG, MP4, AVI (Max 50MB)</p>
+                <button class="btn-primary" id="selectFileBtn">Select File</button>
+            </div>
+
+            <div class="file-preview hidden" id="filePreview">
+                <h3>Selected File</h3>
+                <div class="preview-box">
+                    <img id="previewImage" class="preview-media hidden" alt="Preview">
+                    <video id="previewVideo" class="preview-media hidden" controls></video>
+                    <p class="file-name" id="fileName"></p>
+                </div>
+                <button class="btn-primary" id="analyzeBtn">Analyze</button>
+                <button class="btn-secondary" id="cancelBtn">Cancel</button>
+            </div>
+        </div>
+
+        <div class="results-section hidden" id="resultsSection">
+            <h2>Detection Results</h2>
+            
+            <div class="result-card">
+                <div class="result-header">
+                    <div class="result-label" id="resultLabel"></div>
+                    <div class="confidence-badge" id="confidenceBadge"></div>
+                </div>
+
+                <div class="result-media">
+                    <div class="media-container">
+                        <img id="resultImage" class="result-media-item hidden" alt="Analyzed">
+                        <video id="resultVideo" class="result-media-item hidden" controls></video>
+                        <canvas id="heatmapCanvas" class="heatmap-overlay hidden"></canvas>
+                    </div>
+                </div>
+
+                <div class="confidence-bar-container">
+                    <div class="confidence-labels">
+                        <span>Real</span>
+                        <span>Fake</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceFill"></div>
+                    </div>
+                    <p class="confidence-text" id="confidenceText"></p>
+                </div>
+
+                <div class="result-details">
+                    <div class="detail-item">
+                        <span class="detail-label">File Name:</span>
+                        <span class="detail-value" id="resultFileName"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Analysis Time:</span>
+                        <span class="detail-value" id="resultTime"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Status:</span>
+                        <span class="detail-value">Saved to Database</span>
+                    </div>
+                </div>
+
+                <button class="btn-primary" id="newAnalysisBtn">Analyze Another File</button>
+            </div>
+        </div>
+
+        <div class="admin-link-section">
+            <p class="admin-hint" id="adminHint"></p>
+        </div>
+    </div>
+
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Analyzing media...</p>
+    </div>
+
+    <script type="module" src="../firebase/firebaseConfig.js"></script>
+    <script type="module" src="dashboard.js"></script>
+</body>
+</html>

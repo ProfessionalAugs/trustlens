@@ -1,0 +1,101 @@
+TRUSTLENS PROJECT STRUCTURE
+
+trustlens/
+│
+├── frontend/                          # Web application files
+│   ├── index.html                     # Login/Signup page
+│   ├── dashboard.html                 # Main upload interface
+│   ├── admin.html                     # Admin review panel
+│   ├── styles.css                     # Global styles with dark theme
+│   ├── auth.js                        # Firebase authentication logic
+│   ├── dashboard.js                   # Upload and detection logic
+│   └── admin.js                       # Admin panel logic
+│
+├── backend/                           # Node.js Express server
+│   ├── server.js                      # Main server with API routes
+│   ├── package.json                   # Backend dependencies
+│   └── uploads/                       # Temporary upload folder (created on first run)
+│
+├── firebase/                          # Firebase configuration
+│   ├── firebaseConfig.js              # Firebase initialization (needs your credentials)
+│   └── firestoreRules.txt             # Database security rules
+│
+├── model/                             # TensorFlow model files
+│   ├── model.json                     # Model architecture
+│   └── weights.bin.txt                # Placeholder for weights (backend creates runtime model)
+│
+├── chrome-extension/                  # Chrome extension files
+│   ├── manifest.json                  # Extension configuration (Manifest v3)
+│   ├── popup.html                     # Extension UI
+│   ├── popup.js                       # Extension logic
+│   ├── popup.css                      # Extension styles
+│   ├── content.js                     # Webpage video capture script
+│   ├── background.js                  # Background service worker
+│   └── icon.png                       # Extension icon (128x128)
+│
+├── scripts/                           # Utility scripts
+│   └── testModel.js                   # Model testing script
+│
+├── README.md                          # Complete project documentation
+├── QUICKSTART.md                      # Quick setup guide
+└── .gitignore                         # Git ignore file
+
+TOTAL FILES: 22 files
+SIZE: Approximately 32KB (zipped)
+
+COLOR PALETTE USED:
+- Primary: #802BB1 (Purple)
+- Background: #2D283E (Dark Purple)
+- Accent 1: #564F6F (Medium Purple)
+- Accent 2: #4C495D (Gray Purple)
+- Text: #D1D7E0 (Light Gray)
+
+KEY FEATURES:
+✓ Firebase Authentication (Email/Password)
+✓ Image and Video Upload Detection
+✓ TensorFlow.js Model Integration
+✓ Real-time Confidence Scoring
+✓ Simulated Heatmap Visualization
+✓ Firestore Database Integration
+✓ Admin Dashboard (Low Confidence Review)
+✓ Chrome Extension (Video Scanning)
+✓ Responsive Dark Theme Design
+✓ Complete Error Handling
+✓ Security Rules Included
+
+API ENDPOINTS:
+- GET  /health    - Server health check
+- POST /predict   - Media file prediction
+
+FIRESTORE COLLECTIONS:
+- predictions     - All detection results
+  └── userId, label, confidence, fileName, timestamp
+
+ADMIN ACCESS:
+Email: admin@example.com
+Can view all predictions with confidence < 0.5
+
+BROWSER COMPATIBILITY:
+✓ Chrome (Recommended)
+✓ Edge
+✓ Firefox
+✓ Safari
+
+NODE VERSION REQUIRED:
+>= 14.0.0
+
+DEPENDENCIES:
+Backend:
+- express: Web framework
+- cors: Cross-origin resource sharing
+- multer: File upload handling
+- @tensorflow/tfjs-node: TensorFlow for Node
+- sharp: Image processing
+
+Frontend:
+- Firebase JS SDK (CDN)
+- No build process required
+
+Extension:
+- Manifest v3
+- No external dependencies

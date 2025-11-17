@@ -1,0 +1,123 @@
+{
+  "modelTopology": {
+    "class_name": "Sequential",
+    "config": {
+      "name": "deepfake_detector",
+      "layers": [
+        {
+          "class_name": "Flatten",
+          "config": {
+            "name": "flatten",
+            "trainable": true,
+            "batch_input_shape": [null, 224, 224, 3],
+            "dtype": "float32"
+          }
+        },
+        {
+          "class_name": "Dense",
+          "config": {
+            "name": "dense1",
+            "trainable": true,
+            "units": 128,
+            "activation": "relu",
+            "use_bias": true,
+            "kernel_initializer": {
+              "class_name": "GlorotUniform",
+              "config": {"seed": null}
+            },
+            "bias_initializer": {
+              "class_name": "Zeros",
+              "config": {}
+            }
+          }
+        },
+        {
+          "class_name": "Dropout",
+          "config": {
+            "name": "dropout1",
+            "trainable": true,
+            "rate": 0.5
+          }
+        },
+        {
+          "class_name": "Dense",
+          "config": {
+            "name": "dense2",
+            "trainable": true,
+            "units": 64,
+            "activation": "relu",
+            "use_bias": true,
+            "kernel_initializer": {
+              "class_name": "GlorotUniform",
+              "config": {"seed": null}
+            },
+            "bias_initializer": {
+              "class_name": "Zeros",
+              "config": {}
+            }
+          }
+        },
+        {
+          "class_name": "Dense",
+          "config": {
+            "name": "output",
+            "trainable": true,
+            "units": 1,
+            "activation": "sigmoid",
+            "use_bias": true,
+            "kernel_initializer": {
+              "class_name": "GlorotUniform",
+              "config": {"seed": null}
+            },
+            "bias_initializer": {
+              "class_name": "Zeros",
+              "config": {}
+            }
+          }
+        }
+      ]
+    },
+    "keras_version": "2.11.0",
+    "backend": "tensorflow"
+  },
+  "format": "layers-model",
+  "generatedBy": "TensorFlow.js v4.11.0",
+  "convertedBy": null,
+  "weightsManifest": [
+    {
+      "paths": ["weights.bin"],
+      "weights": [
+        {
+          "name": "dense1/kernel",
+          "shape": [150528, 128],
+          "dtype": "float32"
+        },
+        {
+          "name": "dense1/bias",
+          "shape": [128],
+          "dtype": "float32"
+        },
+        {
+          "name": "dense2/kernel",
+          "shape": [128, 64],
+          "dtype": "float32"
+        },
+        {
+          "name": "dense2/bias",
+          "shape": [64],
+          "dtype": "float32"
+        },
+        {
+          "name": "output/kernel",
+          "shape": [64, 1],
+          "dtype": "float32"
+        },
+        {
+          "name": "output/bias",
+          "shape": [1],
+          "dtype": "float32"
+        }
+      ]
+    }
+  ]
+}
